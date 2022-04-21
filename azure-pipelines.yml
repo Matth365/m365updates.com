@@ -10,10 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Subscription'
+    azureResourceManagerConnection: 'AzureDevOpsSC'
+    subscriptionId: 'fc78f318-a8e7-4463-8046-845b5e7afa5e'
+    location: 'West Europe'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://github.com/Matth365/m365updates.com/blob/main/ARM/RG_TF_Prod.json'
+    csmParametersFileLink: 'https://github.com/Matth365/m365updates.com/blob/main/ARM/RG_TF_Prod.Parameters.json'
+    deploymentMode: 'Incremental'
