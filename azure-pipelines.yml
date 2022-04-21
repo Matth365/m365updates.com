@@ -20,3 +20,16 @@ steps:
     csmFileLink: 'https://github.com/Matth365/m365updates.com/blob/main/ARM/RG_TF_Prod.json'
     csmParametersFileLink: 'https://github.com/Matth365/m365updates.com/blob/main/ARM/RG_TF_Prod.Parameters.json'
     deploymentMode: 'Incremental'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'AzureDevOpsSC'
+    subscriptionId: 'fc78f318-a8e7-4463-8046-845b5e7afa5e'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'RG_TF_PROD_M365updates'
+    location: 'West Europe'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://github.com/Matth365/m365updates.com/blob/main/ARM/SA_TF_Prod.json'
+    csmParametersFileLink: 'https://github.com/Matth365/m365updates.com/blob/main/ARM/SA_TF_Prod.Parameters.json'
+    deploymentMode: 'Incremental'
