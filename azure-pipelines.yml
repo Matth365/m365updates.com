@@ -44,7 +44,7 @@ steps:
     location: 'West Europe'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/KV_Prod.json'
-    csmParametersFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/KV_Prod.Parameters.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/KV_Prod_Parameters.json'
     deploymentMode: 'Incremental'
 
 - task: TerraformTaskV2@2
