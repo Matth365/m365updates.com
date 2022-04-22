@@ -33,6 +33,20 @@ steps:
     csmFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/SA_TF_Prod.json'
     csmParametersFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/SA_TF_Prod.Parameters.json'
     deploymentMode: 'Incremental'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'AzureDevOpsSC'
+    subscriptionId: 'fc78f318-a8e7-4463-8046-845b5e7afa5e'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'RG_TF_PROD_M365updates'
+    location: 'West Europe'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/KV_Prod.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/KV_Prod.Parameters.json'
+    deploymentMode: 'Incremental'
+
 - task: TerraformTaskV2@2
   inputs:
     provider: 'azurerm'
@@ -42,3 +56,4 @@ steps:
     backendAzureRmStorageAccountName: 'satfprodm365updatescom'
     backendAzureRmContainerName: '$logs'
     backendAzureRmKey: 'sp=racwdl&st=2022-04-22T08:53:07Z&se=2099-04-22T16:53:07Z&spr=https&sv=2020-08-04&sr=c&sig=G%2BgBn2zGgYtiZ0VSFnldWzb2BclSgebRO%2B4WhY%2Bewjg%3D'
+
