@@ -1,0 +1,48 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Subscription'
+    azureResourceManagerConnection: 'AzureDevOpsSC'
+    subscriptionId: 'fc78f318-a8e7-4463-8046-845b5e7afa5e'
+    location: 'West Europe'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/RG_TF_Prod.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/RG_TF_Prod.Parameters.json'
+    deploymentMode: 'Incremental'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'AzureDevOpsSC'
+    subscriptionId: 'fc78f318-a8e7-4463-8046-845b5e7afa5e'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'RG_TF_PROD_M365updates'
+    location: 'West Europe'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/SA_TF_Prod.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/SA_TF_Prod.Parameters.json'
+    deploymentMode: 'Incremental'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'AzureDevOpsSC'
+    subscriptionId: 'fc78f318-a8e7-4463-8046-845b5e7afa5e'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'RG_TF_PROD_M365updates'
+    location: 'West Europe'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/KV_Prod.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/Matth365/m365updates.com/main/ARM/KV_Prod_Parameters.json'
+    deploymentMode: 'Incremental'
